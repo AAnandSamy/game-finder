@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "242312898594",
+    "firebase_url": "https://citric-glow-386318-default-rtdb.firebaseio.com",
+    "project_id": "citric-glow-386318",
+    "storage_bucket": "citric-glow-386318.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242312898594:android:99343d01855f7ec197827b",
+        "android_client_info": {
+          "package_name": "com.example.game_spot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242312898594-7sonijci58vp4dv7jhhpd5196e0c47tr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_XdhFzqCwU6y-XkHvOhu7oh_ElzzhAsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242312898594-7sonijci58vp4dv7jhhpd5196e0c47tr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

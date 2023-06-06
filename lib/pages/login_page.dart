@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../services/auth_service.dart';
+import 'home_page.dart';
+import 'package:logger/logger.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -9,7 +14,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   bool _isHidden = true;
+  bool loading = false;
+  var logger = Logger();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +28,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildContainer(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     return SafeArea(
         child: Padding(
       padding: const EdgeInsets.all(20.0),
@@ -71,22 +82,26 @@ class _LoginPageState extends State<LoginPage> {
               ),
               //user name
               const SizedBox(height: 50),
-              const TextField(
+              TextField(
+                  controller:
+                      emailController, // Assign controller to the TextField
                   decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                filled: true,
-                hintText: 'Email',
-                labelText: 'Enter your Email',
-              )),
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    hintText: 'Email Address',
+                    labelText: 'Email Address',
+                  )),
               const SizedBox(height: 20),
               // password
               TextField(
+                  controller:
+                      passwordController, // Assign controller to the TextField
                   obscureText: true,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     filled: true,
-                    hintText: 'password',
-                    labelText: 'Enter your Password',
+                    hintText: 'Password',
+                    labelText: 'Password',
                     suffix: InkWell(
                       onTap: _togglePasswordView,
                       child: Icon(
@@ -106,10 +121,52 @@ class _LoginPageState extends State<LoginPage> {
               ),
               //sing in  buttion
               const SizedBox(height: 10),
-              FilledButton(
-                onPressed: () {},
-                child: const Text('     Sign in     '),
-              ),
+              loading
+                  ? CircularProgressIndicator()
+                  : Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      child: FilledButton(
+                        onPressed: () async {
+                          setState(() {
+                            loading = true;
+                          });
+                          if (emailController.text.isEmpty ||
+                              passwordController.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text("All fields are required!"),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          } else {
+                            User? result = await AuthService().login(
+                                emailController.text,
+                                passwordController.text,
+                                context);
+                            if (result != null) {
+                              print("Success");
+                              logger.i("logged in");
+
+                              print(result.email);
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Homescreen(result)),
+                                  (route) => false);
+                            }
+                          }
+                          setState(() {
+                            loading = false;
+                          });
+                        },
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
               const SizedBox(height: 20),
               // registor now
               const Row(
