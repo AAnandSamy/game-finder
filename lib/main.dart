@@ -7,7 +7,6 @@ import 'package:game_finder/firebase_options.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'constants.dart';
 
 User? get user {
