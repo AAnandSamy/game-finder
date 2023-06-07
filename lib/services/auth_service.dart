@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
@@ -23,6 +22,7 @@ class AuthService {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 
   //Login
@@ -40,6 +40,7 @@ class AuthService {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 
   //google signin
@@ -58,6 +59,7 @@ class AuthService {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 
   Future signOut() async {

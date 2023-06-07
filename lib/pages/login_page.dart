@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                   controller:
                       emailController, // Assign controller to the TextField
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     filled: true,
                     hintText: 'Email Address',
@@ -122,8 +122,8 @@ class _LoginPageState extends State<LoginPage> {
               //sing in  buttion
               const SizedBox(height: 10),
               loading
-                  ? CircularProgressIndicator()
-                  : Container(
+                  ? const CircularProgressIndicator()
+                  : SizedBox(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
                       child: FilledButton(
@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                           if (emailController.text.isEmpty ||
                               passwordController.text.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                              const SnackBar(
                                 content: Text("All fields are required!"),
                                 backgroundColor: Colors.red,
                               ),
@@ -160,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                             loading = false;
                           });
                         },
-                        child: Text(
+                        child: const Text(
                           "Login",
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold),
