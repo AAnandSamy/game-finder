@@ -39,7 +39,7 @@ dependencies:
   firebase_auth: ^4.6.2
   firebase_ui_oauth_google: ^1.2.2
   logger: ^1.4.0
-  firebase_database: ^10.2.2
+  #firebase_database: ^10.2.2
 
   
 
