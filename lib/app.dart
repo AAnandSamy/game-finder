@@ -8,7 +8,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
@@ -24,6 +23,8 @@ class MyApp extends StatelessWidget {
             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
           ),
         ),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
+            .copyWith(background: Colors.grey),
       ),
       home: const AuthGate(),
     );
