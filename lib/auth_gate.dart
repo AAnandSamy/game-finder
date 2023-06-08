@@ -48,6 +48,23 @@ class AuthGate extends StatelessWidget {
             },
             //showAuthActionSwitch: false,
           );
+          return RegisterScreen(
+            providerConfigs: [
+              const EmailProviderConfiguration(),
+            ],
+          );
+          return ForgotPasswordScreen(
+            headerBuilder: (context, constraints, shrinkOffset) {
+              return Padding(
+                padding: const EdgeInsets.all(20).copyWith(top: 40),
+                child: Icon(
+                  Icons.lock,
+                  color: Colors.blue,
+                  size: constraints.maxWidth / 4 * (1 - shrinkOffset),
+                ),
+              );
+            },
+          );
         }
 
         return const HomeScreen();
